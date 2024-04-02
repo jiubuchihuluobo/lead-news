@@ -78,11 +78,4 @@ public class JwtUtil {
         return new SecretKeySpec(encodedKey, 0, encodedKey.length, "HmacSHA512");
     }
 
-    public static void main(String[] args) {
-        String token = "eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_yWLUQpCIRAA77LfT3B9a6vvNmtZGATSKhTR3Vvpb4ZhPnAfDQ6oPhBjFEchZUdEyUmJ2YV8Ln5PyV8zwwZNBhzIGHxE5tMGOovd-tZRH6urLp3PWzWTeTGT3o3rq_9P3BOus1nD7w9G7HoQgAAAAA.4kT3Ajf7QgrJJ45lZimmP_IaRDx_ejF9kbK-joxA1ti7TCUKuQKwvB9Gg-GMAO7jNU_ETT8rAIdHxmkkXDWZug";
-        System.out.println(JwtUtil.getHeader(token));
-        System.out.println(JwtUtil.getClaims(token));
-        System.out.println(JwtUtil.verifyToken(JwtUtil.getClaims(token)));
-    }
-
 }
