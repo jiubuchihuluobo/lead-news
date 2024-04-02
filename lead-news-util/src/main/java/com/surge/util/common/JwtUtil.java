@@ -17,7 +17,7 @@ public class JwtUtil {
 
     private static final String TOKEN_SECRET_STRING = "aRoJCsqvf0uDBYHJC32rOLI6ONJdjb5cGEnv9A0Yqjy02n4KOdIy1KvONuNCXoh2nuQ6SX/aSpcGMbjOGq7rwQ==";
 
-    public static String getToken(Long id) {
+    public static String buildToken(Long id) {
         Map<String, Object> claimMaps = Map.of("id", id);
         long currentTime = System.currentTimeMillis();
         return Jwts.builder()
