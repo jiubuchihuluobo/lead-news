@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: admin-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 04a5a373-5b26-43a4-9e3f-5196e0d0eae2
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 04a5a373-5b26-43a4-9e3f-5196e0d0eae2
+        name: ${spring.application.name}
+        file-extension: yaml

@@ -1,6 +1,10 @@
 package com.surge.filter;
 
 import com.alibaba.fastjson2.JSON;
+import com.surge.util.JwtUtil;
+import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -16,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class AuthorizeFilter implements GlobalFilter {
 
     private final static List<String> urlList = new ArrayList<>();
@@ -33,7 +38,25 @@ public class AuthorizeFilter implements GlobalFilter {
                 return chain.filter(exchange);
             }
         }
-        return null;
+
+        try {
+            String token = request.getHeaders().getFirst("token");
+            if (StringUtils.isBlank(token)) {
+                return this.writeMessage(exchange, "认证失败");
+            }
+            Claims claims = JwtUtil.getClaims(token);
+            if (JwtUtil.verifyToken(claims) > 0) {
+                return this.writeMessage(exchange, "认证过期");
+            }
+            Integer id = claims.get("id", Integer.class);
+            log.info("token校验成功id:{}\tURL:{}", id, request.getURI().getPath());
+            request.mutate().header("userId", String.valueOf(id));
+            return chain.filter(exchange);
+        } catch (Exception e) {
+            log.error("token校验失败:{}", e.toString());
+            return writeMessage(exchange, "认证失败");
+        }
+
     }
 
     private Mono<Void> writeMessage(ServerWebExchange exchange, String message) {
