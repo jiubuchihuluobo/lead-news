@@ -1,0 +1,195 @@
+version: '3.8'
+
+
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    hostname: postgresql
+    restart: "no"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 0d57f5256ee148a98382bc49f673512b
+      TZ: Asia/Shanghai
+    ports:
+      - "5432:5432"
+
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    hostname: mysql
+    restart: "no"
+    environment:
+      MYSQL_ROOT_PASSWORD: 8c130a305b714dd88a03a31194b30eb6
+      MYSQL_DATABASE: nacos
+      MYSQL_USER: nacos
+      MYSQL_PASSWORD: 8c130a305b714dd88a03a31194b30eb6
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/Docker/local_environment/mysql/script:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+
+  nacos:
+    image: nacos/nacos-server:v2.3.0-slim
+    container_name: nacos
+    hostname: nacos
+    restart: "no"
+    environment:
+      TZ: Asia/Shanghai
+      PREFER_HOST_MODE: hostname
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_DB_NAME: nacos
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: nacos
+      MYSQL_SERVICE_PASSWORD: 8c130a305b714dd88a03a31194b30eb6
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+      NACOS_AUTH_IDENTITY_KEY: auth_key
+      NACOS_AUTH_IDENTITY_VALUE: 453d3188a4d1493b965eed31c3b0c6d5
+      NACOS_AUTH_TOKEN: f2894f59a25fc019737167c6f16efb949b601fd26a1102b19b411cc27830e122
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ~/Docker/local_environment/nacos/logs/:/home/nacos/logs
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    hostname: mongodb
+    restart: "no"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 26062b5cbdac4fe8b733af111483fff1
+      TZ: Asia/Shanghai
+    ports:
+      - "27017:27017"
+
+
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: redis
+    hostname: redis
+    restart: "no"
+    environment:
+      - REDIS_ARGS=--requirepass 3dc8cc53d06847578ea0e890b83a6611
+      - TZ=Asia/Shanghai
+    ports:
+      - "6379:6379"
+
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: "no"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: c4047672aff54ce1a891a51f339fd9b1
+      TZ: Asia/Shanghai
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+      - "5671:5671"
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+
+
+  #  activemq:
+  #    image: apache/activemq-classic:5.18.3
+  #    container_name: activemq
+  #    hostname: activemq
+  #    environment:
+  #      - TZ=Asia/Shanghai
+  #    ports:
+  #      - "8161:8161"
+  #      - "61616:61616"
+  #    deploy:
+  #      resources:
+  #        limits:
+  #          memory: 1024M
+
+
+  #  elasticsearch:
+  #    image: elasticsearch:7.17.9
+  #    container_name: elasticsearch
+  #    hostname: elasticsearch
+  #    restart: "no"
+  #    environment:
+  #      - discovery.type=single-node
+  #      - TZ=Asia/Shanghai
+  #    ports:
+  #      - "9200:9200"
+  #      - "9300:9300"
+  #    deploy:
+  #      resources:
+  #        limits:
+  #          memory: 1024M
+
+
+  #  kibana:
+  #    image: kibana:7.17.9
+  #    container_name: kibana
+  #    hostname: kibana
+  #    restart: "no"
+  #    environment:
+  #      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+  #      - TZ=Asia/Shanghai
+  #    ports:
+  #      - "5601:5601"
+  #    depends_on:
+  #      - elasticsearch
+  #    deploy:
+  #      resources:
+  #        limits:
+  #          memory: 1024M
+
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
+    hostname: clickhouse
+    restart: "no"
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - ~/Docker/local_environment/clickhouse/config/users.xml:/etc/clickhouse-server/users.xml
+
+
+  seata-server:
+    image: seataio/seata-server:latest
+    container_name: seata-server
+    hostname: seata-server
+    restart: "no"
+    ports:
+      - "7091:7091"
+      - "8091:8091"
+    environment:
+      - TZ=Asia/Shanghai
+      - SEATA_PORT=8091
+      - SEATA_IP=192.168.0.116
+    volumes:
+      - ~/Docker/local_environment/seata/resources:/seata-server/resources
+    depends_on:
+      mysql:
+        condition: service_healthy
+

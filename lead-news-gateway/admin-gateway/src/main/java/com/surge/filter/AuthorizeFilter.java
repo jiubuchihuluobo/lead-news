@@ -22,9 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
-@Order(0)
+
 @Component
+@Order(0)
+@Slf4j
 public class AuthorizeFilter implements GlobalFilter {
 
     private final static List<String> urlList = new ArrayList<>();
