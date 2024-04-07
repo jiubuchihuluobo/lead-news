@@ -25,6 +25,7 @@
         <beanutils.version>1.9.4</beanutils.version>
         <poi.version>5.2.5</poi.version>
         <jsoup.version>1.17.2</jsoup.version>
+        <slf4j.version>2.0.12</slf4j.version>
     </properties>
 
     <modules>
@@ -43,6 +44,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -150,6 +155,11 @@
             <dependency>
                 <groupId>com.surge</groupId>
                 <artifactId>lead-news-basic</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.surge</groupId>
+                <artifactId>lead-news-common</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
