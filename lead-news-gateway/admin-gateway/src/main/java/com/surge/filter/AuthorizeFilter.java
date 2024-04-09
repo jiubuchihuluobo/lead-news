@@ -3,8 +3,8 @@ package com.surge.filter;
 import com.alibaba.fastjson2.JSON;
 import com.surge.util.common.JwtUtil;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.annotation.Order;
@@ -37,39 +37,26 @@ public class AuthorizeFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        String requestUrl = request.getURI().getPath();
-        for (String url : AuthorizeFilter.urlList) {
-            if (requestUrl.contains(url)) {
+        String url = request.getURI().getPath();
+        for (String requestUrl : AuthorizeFilter.urlList) {
+            if (url.contains(requestUrl)) {
                 return chain.filter(exchange);
             }
         }
-
         try {
-            String token = request.getHeaders().getFirst("token");
-            if (StringUtils.isBlank(token)) {
-                return this.writeMessage(exchange, "认证失败");
-            }
-            Claims claims = JwtUtil.getClaims(token);
-            if (JwtUtil.verifyToken(claims) > 0) {
-                return this.writeMessage(exchange, "认证过期");
-            }
-            Integer id = claims.get("id", Integer.class);
-            log.info("token校验成功id:{}\tURL:{}", id, request.getURI().getPath());
-            request.mutate().header("userId", String.valueOf(id));
-            return chain.filter(exchange);
+            Jws<Claims> jws = JwtUtil.verifyToken(request.getHeaders().getFirst("token"));
         } catch (Exception e) {
             log.error("token校验失败:{}", e.toString());
-            return this.writeMessage(exchange, "认证失败");
+            return this.writeMessage(exchange, e.toString());
         }
-
+        return chain.filter(exchange);
     }
 
     private Mono<Void> writeMessage(ServerWebExchange exchange, String message) {
-        Map<String, Object> map = Map.of("code", HttpStatus.UNAUTHORIZED.value(), "errorMessage", message);
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.UNAUTHORIZED);
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-        DataBuffer buffer = response.bufferFactory().wrap(JSON.toJSONBytes(map));
+        DataBuffer buffer = response.bufferFactory().wrap(JSON.toJSONBytes(Map.of("code", HttpStatus.UNAUTHORIZED.value(), "errorMessage", message)));
         return response.writeWith(Flux.just(buffer));
     }
 
