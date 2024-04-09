@@ -1,6 +1,6 @@
-package com.surge.dto;
+package com.surge.common.dto;
 
-import com.surge.enums.HttpCodeEnum;
+import com.surge.common.enums.HttpCodeEnum;
 import lombok.Data;
 
 import java.io.Serializable;

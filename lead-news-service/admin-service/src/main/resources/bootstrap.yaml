@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: leadnews-admin
+  profiles:
+    active: dev
+    ip: 127.0.0.1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${spring.profiles.ip}:8848
+        namespace: 04a5a373-5b26-43a4-9e3f-5196e0d0eae2
+      config:
+        server-addr: ${spring.profiles.ip}:8848
+        namespace: 04a5a373-5b26-43a4-9e3f-5196e0d0eae2
+        name: ${spring.application.name}
+        file-extension: yaml
+        shared-configs:
+          - data-id: share-feign-dev.yaml
+            group: DEFAULT_GROUP
+            refresh: false
+          - data-id: share-seata-dev.yaml
+            group: DEFAULT_GROUP
+            refresh: false

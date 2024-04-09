@@ -1,6 +1,6 @@
 package com.surge.exception;
 
-import com.surge.enums.HttpCodeEnum;
+import com.surge.common.enums.HttpCodeEnum;
 
 public class RaiseException {
 

@@ -20,6 +20,7 @@ services:
     container_name: mysql
     hostname: mysql
     restart: "no"
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: 8c130a305b714dd88a03a31194b30eb6
       MYSQL_DATABASE: nacos

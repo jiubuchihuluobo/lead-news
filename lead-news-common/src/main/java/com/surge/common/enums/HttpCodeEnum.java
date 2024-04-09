@@ -1,4 +1,4 @@
-package com.surge.enums;
+package com.surge.common.enums;
 
 import lombok.Getter;
 

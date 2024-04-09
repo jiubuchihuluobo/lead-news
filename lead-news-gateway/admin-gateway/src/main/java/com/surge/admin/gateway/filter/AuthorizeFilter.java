@@ -1,7 +1,7 @@
-package com.surge.filter;
+package com.surge.admin.gateway.filter;
 
 import com.alibaba.fastjson2.JSON;
-import com.surge.util.common.JwtUtil;
+import com.surge.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import lombok.extern.slf4j.Slf4j;

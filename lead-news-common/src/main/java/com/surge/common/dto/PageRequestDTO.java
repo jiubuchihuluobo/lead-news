@@ -1,4 +1,4 @@
-package com.surge.dto;
+package com.surge.common.dto;
 
 import lombok.Data;
 

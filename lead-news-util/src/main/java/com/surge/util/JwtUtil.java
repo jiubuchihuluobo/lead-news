@@ -1,4 +1,4 @@
-package com.surge.util.common;
+package com.surge.util;
 
 import io.jsonwebtoken.*;
 

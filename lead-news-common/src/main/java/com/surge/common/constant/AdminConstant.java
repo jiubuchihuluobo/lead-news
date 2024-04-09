@@ -1,4 +1,4 @@
-package com.surge.constant;
+package com.surge.common.constant;
 
 public class AdminConstant {
     public static final Short WAIT_AUTH = 1;
