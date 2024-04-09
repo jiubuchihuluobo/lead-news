@@ -39,7 +39,7 @@ services:
 
 
   nacos:
-    image: nacos/nacos-server:v2.3.0-slim
+    image: nacos/nacos-server:v2.3.2-slim
     container_name: nacos
     hostname: nacos
     restart: "no"
@@ -63,8 +63,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    volumes:
-      - ~/Docker/local_environment/nacos/logs/:/home/nacos/logs
+  #    volumes:
+  #      - ~/Docker/local_environment/nacos/logs/:/home/nacos/logs
 
 
   mongodb:
@@ -188,7 +188,7 @@ services:
       - SEATA_PORT=8091
       - SEATA_IP=192.168.0.116
     volumes:
-      - ~/Docker/local_environment/seata/resources:/seata-server/resources
+      - ~/Docker/local_environment/seata/resources/application.yml:/seata-server/resources/application.yml
     depends_on:
       mysql:
         condition: service_healthy
