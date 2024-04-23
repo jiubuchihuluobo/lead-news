@@ -162,6 +162,16 @@
             </dependency>
             <dependency>
                 <groupId>com.surge</groupId>
+                <artifactId>surge-file-starter</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.surge</groupId>
+                <artifactId>surge-exception-starter</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.surge</groupId>
                 <artifactId>lead-news-basic</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>

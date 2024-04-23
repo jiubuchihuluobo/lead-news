@@ -13,4 +13,5 @@ public interface LoginService extends IService<AdminUser> {
 
     ResponseResult<Map<String, Object>> login(AdminUserDTO dto);
 
+    void updateLoginTime(AdminUser adminUser);
 }
