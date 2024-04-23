@@ -3,7 +3,7 @@ package com.surge.admin.dto;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class AdminUserDTO {
 
     private String name;
 
