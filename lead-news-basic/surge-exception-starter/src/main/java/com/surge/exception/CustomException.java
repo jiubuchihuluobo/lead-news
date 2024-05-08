@@ -1,10 +1,12 @@
 package com.surge.exception;
 
 import com.surge.common.enums.HttpCodeEnum;
+import lombok.Getter;
 
 
 public class CustomException extends RuntimeException {
 
+    @Getter
     private final HttpCodeEnum httpCodeEnum;
 
     private final String message;
