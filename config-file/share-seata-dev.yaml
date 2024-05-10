@@ -1,0 +1,15 @@
+seata:
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: ${spring.profiles.ip}:8848
+      group: "SEATA_GROUP"
+      namespace: "db96d78e-0956-4c19-8033-4679b00bc97f"
+      username: "nacos"
+      password: "nacos"
+      context-path: ""
+  tx-service-group: default_tx_group
+  service:
+    vgroup-mapping:
+      default_tx_group: default

@@ -1,0 +1,12 @@
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 5000
+ribbon:
+  ConnectTimeout: 2000
+  ReadTimeout: 5000
+  eager-load:
+    enabled: true

@@ -1,0 +1,11 @@
+server:
+  port: 9001
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${spring.profiles.ip}:3306/leadnews_admin
+    username: root
+    password: 8c130a305b714dd88a03a31194b30eb6
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.surge.admin.pojo
