@@ -30,18 +30,19 @@ public class LoginServiceImplement extends ServiceImpl<AdminUserMapper, AdminUse
 
     @Override
     public ResponseResult<Map<String, Object>> login(AdminUserDTO dto) {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        String decodePassword = dto.getPassword();
-
         QueryWrapper<AdminUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(AdminUser::getName, dto.getName());
+        AdminUser adminUser = adminUserMapper.selectOne(queryWrapper);
 
-        AdminUser adminUser = this.getOne(queryWrapper);
+        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        String decodePassword = dto.getPassword();
         if (!passwordEncoder.matches(decodePassword, adminUser.getPassword())) {
             RaiseException.raise(HttpCodeEnum.LOGIN_PASSWORD_ERROR);
         }
+
         String token = JwtUtil.buildToken(adminUser.getId().longValue());
         this.updateLoginTime(adminUser);
+
         AdminUserVO adminUserVO = new AdminUserVO();
         BeanUtils.copyProperties(adminUser, adminUserVO);
         return ResponseResult.okResult(Map.of("token", token, "user", adminUserVO));
@@ -50,7 +51,7 @@ public class LoginServiceImplement extends ServiceImpl<AdminUserMapper, AdminUse
     @Override
     public void updateLoginTime(AdminUser adminUser) {
         adminUser.setLoginTime(new Date());
-        this.updateById(adminUser);
+        adminUserMapper.updateById(adminUser);
     }
 
 }

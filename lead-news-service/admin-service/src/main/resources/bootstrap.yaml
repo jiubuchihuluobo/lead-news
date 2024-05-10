@@ -1,6 +1,6 @@
 spring:
   application:
-    name: leadnews-admin
+    name: lead-news-admin
   profiles:
     active: dev
     ip: 127.0.0.1
