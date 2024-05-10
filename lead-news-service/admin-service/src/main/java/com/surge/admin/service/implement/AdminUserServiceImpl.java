@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.surge.admin.dto.AdminUserDTO;
 import com.surge.admin.mapper.AdminUserMapper;
 import com.surge.admin.pojo.AdminUser;
-import com.surge.admin.service.LoginService;
+import com.surge.admin.service.AdminUserService;
 import com.surge.admin.vo.AdminUserVO;
 import com.surge.common.dto.ResponseResult;
 import com.surge.common.enums.HttpCodeEnum;
@@ -20,11 +20,11 @@ import java.util.Date;
 import java.util.Map;
 
 @Service
-public class LoginServiceImplement extends ServiceImpl<AdminUserMapper, AdminUser> implements LoginService {
+public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser> implements AdminUserService {
 
     private final AdminUserMapper adminUserMapper;
 
-    public LoginServiceImplement(AdminUserMapper adminUserMapper) {
+    public AdminUserServiceImpl(AdminUserMapper adminUserMapper) {
         this.adminUserMapper = adminUserMapper;
     }
 

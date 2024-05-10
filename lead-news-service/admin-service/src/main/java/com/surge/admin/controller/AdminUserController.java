@@ -1,7 +1,7 @@
 package com.surge.admin.controller;
 
 import com.surge.admin.dto.AdminUserDTO;
-import com.surge.admin.service.LoginService;
+import com.surge.admin.service.AdminUserService;
 import com.surge.common.dto.ResponseResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,17 +12,17 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/login")
-public class LoginController {
+public class AdminUserController {
 
-    private final LoginService loginService;
+    private final AdminUserService adminUserService;
 
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
+    public AdminUserController(AdminUserService adminUserService) {
+        this.adminUserService = adminUserService;
     }
 
     @PostMapping("/in")
     ResponseResult<Map<String, Object>> login(@RequestBody AdminUserDTO dto) {
-        return this.loginService.login(dto);
+        return this.adminUserService.login(dto);
     }
 
 }

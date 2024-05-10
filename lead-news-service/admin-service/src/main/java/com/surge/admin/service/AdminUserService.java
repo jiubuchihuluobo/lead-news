@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public interface LoginService extends IService<AdminUser> {
+public interface AdminUserService extends IService<AdminUser> {
 
     ResponseResult<Map<String, Object>> login(AdminUserDTO dto);
 

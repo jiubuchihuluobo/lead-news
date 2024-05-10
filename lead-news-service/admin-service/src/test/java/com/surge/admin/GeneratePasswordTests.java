@@ -11,7 +11,7 @@ public class GeneratePasswordTests {
     @Test
     void contextLoads() {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        String password = passwordEncoder.encode("gauss");
+        String password = passwordEncoder.encode("guest");
         System.out.println(password);
     }
 
