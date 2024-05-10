@@ -5,16 +5,16 @@ import lombok.Data;
 @Data
 public class PageRequestDTO {
 
-    protected Integer size;
+    protected Long size;
 
-    protected Integer page;
+    protected Long page;
 
     public void checkParam() {
         if (this.page == null || this.page <= 0) {
-            setPage(1);
+            setPage(1L);
         }
         if (this.size == null || this.size <= 0 || this.size > 100) {
-            setSize(10);
+            setSize(10L);
         }
     }
 

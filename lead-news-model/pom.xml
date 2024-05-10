@@ -50,6 +50,10 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.surge</groupId>
+            <artifactId>lead-news-common</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

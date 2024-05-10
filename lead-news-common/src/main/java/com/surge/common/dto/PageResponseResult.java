@@ -9,22 +9,22 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 public class PageResponseResult extends ResponseResult<Object> implements Serializable {
 
-    private Integer currentPage;
+    private Long currentPage;
 
-    private Integer size;
+    private Long size;
 
     private Long total;
 
     public PageResponseResult() {
     }
 
-    public PageResponseResult(Integer currentPage, Integer size, Long total) {
+    public PageResponseResult(Long currentPage, Long size, Long total) {
         this.currentPage = currentPage;
         this.size = size;
         this.total = total;
     }
 
-    public PageResponseResult(Integer currentPage, Integer size, Long total, Object data) {
+    public PageResponseResult(Long currentPage, Long size, Long total, Object data) {
         this.currentPage = currentPage;
         this.size = size;
         this.total = total;
