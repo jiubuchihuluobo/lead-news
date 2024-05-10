@@ -29,7 +29,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
     }
 
     @Override
-    public ResponseResult<Map<String, Object>> login(AdminUserDTO dto) {
+    public ResponseResult<Object> login(AdminUserDTO dto) {
         QueryWrapper<AdminUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(AdminUser::getName, dto.getName());
         AdminUser adminUser = adminUserMapper.selectOne(queryWrapper);

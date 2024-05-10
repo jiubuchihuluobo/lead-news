@@ -11,7 +11,7 @@ import java.util.Map;
 @Service
 public interface AdminUserService extends IService<AdminUser> {
 
-    ResponseResult<Map<String, Object>> login(AdminUserDTO dto);
+    ResponseResult<Object> login(AdminUserDTO dto);
 
     void updateLoginTime(AdminUser adminUser);
 }

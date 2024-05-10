@@ -21,7 +21,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/in")
-    ResponseResult<Map<String, Object>> login(@RequestBody AdminUserDTO dto) {
+    ResponseResult<Object> login(@RequestBody AdminUserDTO dto) {
         return this.adminUserService.login(dto);
     }
 
