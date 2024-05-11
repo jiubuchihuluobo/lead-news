@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class PageResponseResult extends ResponseResult<Object> implements Serializable {
+public class PageResponseResult<T> extends ResponseResult<Object> implements Serializable {
 
     private Long currentPage;
 
@@ -24,7 +24,7 @@ public class PageResponseResult extends ResponseResult<Object> implements Serial
         this.total = total;
     }
 
-    public PageResponseResult(Long currentPage, Long size, Long total, Object data) {
+    public PageResponseResult(Long currentPage, Long size, Long total, T data) {
         this.currentPage = currentPage;
         this.size = size;
         this.total = total;
