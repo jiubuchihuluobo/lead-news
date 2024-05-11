@@ -7,6 +7,7 @@ import com.surge.admin.mapper.AdminUserMapper;
 import com.surge.admin.pojo.AdminUser;
 import com.surge.admin.service.AdminUserService;
 import com.surge.admin.vo.AdminUserVO;
+import com.surge.admin.vo.LoginVO;
 import com.surge.common.dto.ResponseResult;
 import com.surge.common.enums.HttpCodeEnum;
 import com.surge.exception.RaiseException;
@@ -17,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Map;
 
 @Service
 public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser> implements AdminUserService {
@@ -45,7 +45,11 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
 
         AdminUserVO adminUserVO = new AdminUserVO();
         BeanUtils.copyProperties(adminUser, adminUserVO);
-        return ResponseResult.okResult(Map.of("token", token, "user", adminUserVO));
+
+        LoginVO loginVO = new LoginVO();
+        loginVO.setUser(adminUserVO);
+        loginVO.setToken(token);
+        return ResponseResult.okResult(loginVO);
     }
 
     @Override
