@@ -11,6 +11,7 @@ import com.surge.admin.service.AdminChannelService;
 import com.surge.admin.vo.AdminChannelVO;
 import com.surge.common.dto.PageResponseResult;
 import com.surge.common.dto.ResponseResult;
+import org.jsoup.internal.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class AdminChannelServiceImpl extends ServiceImpl<AdminChannelMapper, Adm
         LambdaQueryWrapper<AdminChannel> lambdaQueryWrapper = new LambdaQueryWrapper<>();
 
         // 动态添加条件
-        if (dto.getStatus() != null && !dto.getName().isBlank()) {
+        if (!StringUtil.isBlank(dto.getName())) {
             lambdaQueryWrapper.like(AdminChannel::getName, dto.getName());
         }
         if (dto.getStatus() != null) {
