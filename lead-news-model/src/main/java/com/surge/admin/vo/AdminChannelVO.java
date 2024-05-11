@@ -1,6 +1,5 @@
 package com.surge.admin.vo;
 
-import com.surge.common.dto.PageResponseResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,7 +8,7 @@ import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class AdminChannelVO extends PageResponseResult {
+public class AdminChannelVO {
 
     private Integer id;
 

@@ -2,6 +2,7 @@ package com.surge.admin.controller;
 
 import com.surge.admin.dto.AdminChannelDTO;
 import com.surge.admin.service.AdminChannelService;
+import com.surge.common.dto.PageResponseResult;
 import com.surge.common.dto.ResponseResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +20,13 @@ public class AdminChannelController {
     }
 
     @PostMapping("/list")
-    ResponseResult<Object> search(@RequestBody AdminChannelDTO dto) {
+    PageResponseResult<Object> search(@RequestBody AdminChannelDTO dto) {
         return this.adminChannelService.search(dto);
+    }
+
+    @PostMapping("/update")
+    ResponseResult<Object> update(@RequestBody AdminChannelDTO dto) {
+        return this.adminChannelService.change(dto);
     }
 
 }

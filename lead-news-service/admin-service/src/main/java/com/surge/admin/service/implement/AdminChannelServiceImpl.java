@@ -32,9 +32,8 @@ public class AdminChannelServiceImpl extends ServiceImpl<AdminChannelMapper, Adm
         return adminChannelVO;
     }
 
-
     @Override
-    public ResponseResult<Object> search(AdminChannelDTO dto) {
+    public PageResponseResult<Object> search(AdminChannelDTO dto) {
         // 使用LambdaQueryWrapper而非QueryWrapper
         LambdaQueryWrapper<AdminChannel> lambdaQueryWrapper = new LambdaQueryWrapper<>();
 
@@ -52,7 +51,15 @@ public class AdminChannelServiceImpl extends ServiceImpl<AdminChannelMapper, Adm
 
         // 转化为VO
         List<AdminChannelVO> adminChannelVreOList = pageResult.getRecords().stream().map(this::convertToAdminChannelVO).toList();
-        return new PageResponseResult(pageResult.getCurrent(), pageResult.getSize(), pageResult.getTotal(), adminChannelVreOList);
+        return new PageResponseResult<>(pageResult.getCurrent(), pageResult.getSize(), pageResult.getTotal(), adminChannelVreOList);
+    }
+
+    @Override
+    public ResponseResult<Object> change(AdminChannelDTO dto) {
+        AdminChannel adminChannel = new AdminChannel();
+        BeanUtils.copyProperties(dto, adminChannel);
+        this.adminChannelMapper.updateById(adminChannel);
+        return ResponseResult.okResult();
     }
 
 }
