@@ -28,6 +28,19 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         this.adminUserMapper = adminUserMapper;
     }
 
+    private AdminUserVO convertAdminUserToAdminUserVO(AdminUser adminUser) {
+        AdminUserVO adminUserVO = new AdminUserVO();
+        BeanUtils.copyProperties(adminUser, adminUserVO);
+        return adminUserVO;
+    }
+
+    private LoginVO convertAdminUserVOToLoginVO(AdminUserVO adminUserVO, String token) {
+        LoginVO loginVO = new LoginVO();
+        loginVO.setUser(adminUserVO);
+        loginVO.setToken(token);
+        return loginVO;
+    }
+
     @Override
     public ResponseResult<Object> login(AdminUserDTO dto) {
         QueryWrapper<AdminUser> queryWrapper = new QueryWrapper<>();
@@ -43,12 +56,8 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
         String token = JwtUtil.buildToken(adminUser.getId().longValue());
         this.updateLoginTime(adminUser);
 
-        AdminUserVO adminUserVO = new AdminUserVO();
-        BeanUtils.copyProperties(adminUser, adminUserVO);
-
-        LoginVO loginVO = new LoginVO();
-        loginVO.setUser(adminUserVO);
-        loginVO.setToken(token);
+        AdminUserVO adminUserVO = this.convertAdminUserToAdminUserVO(adminUser);
+        LoginVO loginVO = this.convertAdminUserVOToLoginVO(adminUserVO, token);
         return ResponseResult.okResult(loginVO);
     }
 

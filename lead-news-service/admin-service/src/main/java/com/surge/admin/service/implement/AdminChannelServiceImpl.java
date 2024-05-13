@@ -26,10 +26,16 @@ public class AdminChannelServiceImpl extends ServiceImpl<AdminChannelMapper, Adm
         this.adminChannelMapper = adminChannelMapper;
     }
 
-    private AdminChannelVO convertToAdminChannelVO(AdminChannel adminChannel) {
+    private AdminChannelVO convertAdminChannelToAdminChannelVO(AdminChannel adminChannel) {
         AdminChannelVO adminChannelVO = new AdminChannelVO();
         BeanUtils.copyProperties(adminChannel, adminChannelVO);
         return adminChannelVO;
+    }
+
+    private AdminChannel convertAdminChannelDTOToAdminChannel(AdminChannelDTO dto) {
+        AdminChannel adminChannel = new AdminChannel();
+        BeanUtils.copyProperties(dto, adminChannel);
+        return adminChannel;
     }
 
     @Override
@@ -50,15 +56,27 @@ public class AdminChannelServiceImpl extends ServiceImpl<AdminChannelMapper, Adm
         IPage<AdminChannel> pageResult = this.adminChannelMapper.selectPage(iPage, lambdaQueryWrapper);
 
         // 转化为VO
-        List<AdminChannelVO> adminChannelVreOList = pageResult.getRecords().stream().map(this::convertToAdminChannelVO).toList();
+        List<AdminChannelVO> adminChannelVreOList = pageResult.getRecords().stream().map(this::convertAdminChannelToAdminChannelVO).toList();
         return new PageResponseResult<>(pageResult.getCurrent(), pageResult.getSize(), pageResult.getTotal(), adminChannelVreOList);
     }
 
     @Override
     public ResponseResult<Object> change(AdminChannelDTO dto) {
-        AdminChannel adminChannel = new AdminChannel();
-        BeanUtils.copyProperties(dto, adminChannel);
+        AdminChannel adminChannel = this.convertAdminChannelDTOToAdminChannel(dto);
         this.adminChannelMapper.updateById(adminChannel);
+        return ResponseResult.okResult();
+    }
+
+    @Override
+    public ResponseResult<Object> add(AdminChannelDTO dto) {
+        AdminChannel adminChannel = this.convertAdminChannelDTOToAdminChannel(dto);
+        this.save(adminChannel);
+        return ResponseResult.okResult();
+    }
+
+    @Override
+    public ResponseResult<Object> delete(Integer id) {
+        this.removeById(id);
         return ResponseResult.okResult();
     }
 

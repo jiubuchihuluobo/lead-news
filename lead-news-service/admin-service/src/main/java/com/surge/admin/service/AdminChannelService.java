@@ -13,4 +13,8 @@ public interface AdminChannelService extends IService<AdminChannel> {
 
     ResponseResult<Object> change(AdminChannelDTO dto);
 
+    ResponseResult<Object> add(AdminChannelDTO dto);
+
+    ResponseResult<Object> delete(Integer id);
+
 }
