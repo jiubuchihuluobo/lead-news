@@ -1,4 +1,4 @@
-package com.surge.admin.pojo;
+package com.surge.model.admin.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -9,8 +9,8 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName("ad_user")
-public class AdminUser {
+@TableName("ad_channel")
+public class AdminChannel {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
@@ -18,26 +18,17 @@ public class AdminUser {
     @TableField("name")
     private String name;
 
-    @TableField("password")
-    private String password;
+    @TableField("description")
+    private String description;
 
-    @TableField("nickname")
-    private String nickname;
-
-    @TableField("image")
-    private String image;
-
-    @TableField("phone")
-    private String phone;
+    @TableField("is_default")
+    private Boolean is_default;
 
     @TableField("status")
     private Boolean status;
 
-    @TableField("email")
-    private String email;
-
-    @TableField("login_time")
-    private Date loginTime;
+    @TableField("ord")
+    private Short ord;
 
     @TableField("created_time")
     private Date createdTime;

@@ -1,8 +1,8 @@
 package com.surge.admin.controller;
 
-import com.surge.admin.dto.AdminSensitiveDTO;
 import com.surge.admin.service.AdminSensitiveService;
 import com.surge.common.dto.ResponseResult;
+import com.surge.model.admin.dto.AdminSensitiveDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

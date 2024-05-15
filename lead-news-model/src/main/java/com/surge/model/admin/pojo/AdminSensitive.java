@@ -1,4 +1,4 @@
-package com.surge.admin.pojo;
+package com.surge.model.admin.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

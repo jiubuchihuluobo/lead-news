@@ -1,9 +1,9 @@
 package com.surge.admin.controller;
 
-import com.surge.admin.dto.AdminChannelDTO;
 import com.surge.admin.service.AdminChannelService;
 import com.surge.common.dto.PageResponseResult;
 import com.surge.common.dto.ResponseResult;
+import com.surge.model.admin.dto.AdminChannelDTO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

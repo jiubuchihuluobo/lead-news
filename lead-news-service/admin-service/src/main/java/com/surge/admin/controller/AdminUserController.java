@@ -1,8 +1,8 @@
 package com.surge.admin.controller;
 
-import com.surge.admin.dto.AdminUserDTO;
 import com.surge.admin.service.AdminUserService;
 import com.surge.common.dto.ResponseResult;
+import com.surge.model.admin.dto.AdminUserDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

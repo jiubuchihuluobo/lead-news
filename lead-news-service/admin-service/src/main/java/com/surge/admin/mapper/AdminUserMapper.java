@@ -1,7 +1,7 @@
 package com.surge.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.surge.admin.pojo.AdminUser;
+import com.surge.model.admin.pojo.AdminUser;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

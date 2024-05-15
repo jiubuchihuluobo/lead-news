@@ -1,14 +1,12 @@
-package com.surge.admin.vo;
+package com.surge.model.admin.dto;
 
+import com.surge.common.dto.PageRequestDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
-
-
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class AdminChannelVO {
+public class AdminChannelDTO extends PageRequestDTO {
 
     private Integer id;
 
@@ -16,12 +14,8 @@ public class AdminChannelVO {
 
     private String description;
 
-    private Boolean is_default;
-
     private Boolean status;
 
     private Short ord;
-
-    private Date createdTime;
 
 }

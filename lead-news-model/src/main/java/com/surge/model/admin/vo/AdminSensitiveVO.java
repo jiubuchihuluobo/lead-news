@@ -1,4 +1,4 @@
-package com.surge.admin.vo;
+package com.surge.model.admin.vo;
 
 import lombok.Data;
 

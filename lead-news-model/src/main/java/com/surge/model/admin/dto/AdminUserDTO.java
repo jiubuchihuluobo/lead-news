@@ -1,4 +1,4 @@
-package com.surge.admin.dto;
+package com.surge.model.admin.dto;
 
 import lombok.Data;
 

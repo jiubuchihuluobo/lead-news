@@ -1,10 +1,10 @@
 package com.surge.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.surge.admin.dto.AdminSensitiveDTO;
-import com.surge.admin.pojo.AdminSensitive;
 import com.surge.common.dto.PageResponseResult;
 import com.surge.common.dto.ResponseResult;
+import com.surge.model.admin.dto.AdminSensitiveDTO;
+import com.surge.model.admin.pojo.AdminSensitive;
 
 public interface AdminSensitiveService extends IService<AdminSensitive> {
 
