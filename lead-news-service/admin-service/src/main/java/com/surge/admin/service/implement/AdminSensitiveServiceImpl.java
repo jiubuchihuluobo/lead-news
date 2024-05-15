@@ -43,8 +43,8 @@ public class AdminSensitiveServiceImpl extends ServiceImpl<AdminSensitiveMapper,
     @Override
     public PageResponseResult<Object> search(AdminSensitiveDTO dto) {
         LambdaQueryWrapper<AdminSensitive> queryWrapper = new LambdaQueryWrapper<>();
-        if (!StringUtil.isBlank(dto.getName())) {
-            queryWrapper.like(AdminSensitive::getSensitives, dto.getName());
+        if (!StringUtil.isBlank(dto.getSensitives())) {
+            queryWrapper.like(AdminSensitive::getSensitives, dto.getSensitives());
         }
         IPage<AdminSensitive> iPage = new Page<>(dto.getPage(), dto.getSize());
         IPage<AdminSensitive> pageResult = this.adminSensitiveMapper.selectPage(iPage, queryWrapper);

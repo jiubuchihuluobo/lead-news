@@ -1,5 +1,6 @@
 package com.surge.admin.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.surge.common.dto.PageRequestDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,8 +13,7 @@ public class AdminSensitiveDTO extends PageRequestDTO {
 
     private Integer id;
 
-    private String name;
-
+    @JsonAlias({"sensitives", "name"})
     private String sensitives;
 
     private Date createdTime;
