@@ -1,4 +1,4 @@
-package com.surge.model.user.service;
+package com.surge.user.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.surge.common.dto.ResponseResult;

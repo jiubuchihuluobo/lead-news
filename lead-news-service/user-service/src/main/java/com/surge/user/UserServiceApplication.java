@@ -1,4 +1,4 @@
-package com.surge.model.user;
+package com.surge.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

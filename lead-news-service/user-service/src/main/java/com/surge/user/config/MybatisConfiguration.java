@@ -1,4 +1,4 @@
-package com.surge.model.user.config;
+package com.surge.user.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

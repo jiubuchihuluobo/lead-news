@@ -1,4 +1,4 @@
-package com.surge.model.user.mapper;
+package com.surge.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.surge.model.user.pojo.AppUserRealName;

@@ -1,4 +1,4 @@
-package com.surge.model.user.service.impl;
+package com.surge.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -7,10 +7,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.surge.common.dto.PageResponseResult;
 import com.surge.common.dto.ResponseResult;
 import com.surge.model.user.dto.AppUserRealNameDTO;
-import com.surge.model.user.mapper.AppUserRealNameMapper;
 import com.surge.model.user.pojo.AppUserRealName;
-import com.surge.model.user.service.AppUserRealNameService;
 import com.surge.model.user.vo.AppUserRealNameVO;
+import com.surge.user.mapper.AppUserRealNameMapper;
+import com.surge.user.service.AppUserRealNameService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

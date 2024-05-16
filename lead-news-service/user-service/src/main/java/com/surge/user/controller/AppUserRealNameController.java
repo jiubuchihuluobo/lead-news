@@ -1,8 +1,8 @@
-package com.surge.model.user.controller;
+package com.surge.user.controller;
 
 import com.surge.common.dto.ResponseResult;
 import com.surge.model.user.dto.AppUserRealNameDTO;
-import com.surge.model.user.service.AppUserRealNameService;
+import com.surge.user.service.AppUserRealNameService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
