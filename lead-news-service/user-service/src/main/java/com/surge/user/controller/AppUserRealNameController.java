@@ -23,4 +23,9 @@ public class AppUserRealNameController {
         return this.appUserRealNameService.search(dto);
     }
 
+    @PostMapping("/authPass")
+    public ResponseResult<Object> verify(@RequestBody AppUserRealNameDTO dto) {
+        return this.appUserRealNameService.verifyById(dto);
+    }
+
 }

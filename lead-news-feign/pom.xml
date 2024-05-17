@@ -17,4 +17,27 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.surge</groupId>
+            <artifactId>lead-news-basic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.surge</groupId>
+            <artifactId>lead-news-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.surge</groupId>
+            <artifactId>lead-news-model</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

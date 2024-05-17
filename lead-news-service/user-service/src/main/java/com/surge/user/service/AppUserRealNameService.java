@@ -7,6 +7,8 @@ import com.surge.model.user.pojo.AppUserRealName;
 
 public interface AppUserRealNameService extends IService<AppUserRealName> {
 
-    public ResponseResult<Object> search(AppUserRealNameDTO dto);
+    ResponseResult<Object> search(AppUserRealNameDTO dto);
+
+    ResponseResult<Object> verifyById(AppUserRealNameDTO dto);
 
 }
