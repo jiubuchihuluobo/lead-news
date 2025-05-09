@@ -23,7 +23,7 @@
         <fastjson2.version>2.0.48</fastjson2.version>
         <hanlp.version>portable-1.8.4</hanlp.version>
         <beanutils.version>1.9.4</beanutils.version>
-        <poi.version>5.2.5</poi.version>
+        <poi.version>5.4.0</poi.version>
         <jsoup.version>1.17.2</jsoup.version>
         <slf4j.version>2.0.12</slf4j.version>
         <netty.version>4.1.109.Final</netty.version>
